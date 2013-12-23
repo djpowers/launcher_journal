@@ -38,6 +38,7 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'valid_attribute'
   gem 'shoulda-matchers'
+  gem 'validates_email_format_of'
 end
 
 # Use ActiveModel has_secure_password
