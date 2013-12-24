@@ -18,7 +18,11 @@
         <td><%= entry.description %></td>
         <td><%= entry.created_at %></td>
         <td><%= Author.where(id: entry.author_id).first.name %></td>
-        <td><%= Category.where(id: entry.category_id).first.name %></td>
+        <% if entry.category_id == nil %>
+          <td>-</td>
+        <% else %>
+          <td><%= Category.where(id: entry.category_id).first.name %></td>
+        <% end %>
         <td><%= link_to 'Show', entry %></td>
         <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
         <td><%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>

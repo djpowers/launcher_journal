@@ -1,7 +1,7 @@
 class EntriesController < ApplicationController
 
   def index
-    @entries = Entry.all.order(:created_at)
+    @entries = Entry.all.order(created_at: :desc)
   end
 
   def show

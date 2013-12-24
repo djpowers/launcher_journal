@@ -4,7 +4,9 @@
   <strong>Author:</strong>
   <%= Author.where(id: @entry.author_id).first.name %><br>
   <strong>Category:</strong>
-  <%= Category.where(id: @entry.category_id).first.name %><br>
+  <% if @entry.category_id != nil %>
+    <%= Category.where(id: @entry.category_id).first.name %><br>
+  <% end %>
   <%= @entry.description %><br>
 </p>
 
