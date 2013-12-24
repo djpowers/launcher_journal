@@ -1,5 +1,5 @@
 LauncherJournal::Application.routes.draw do
-  resources :auhors
+  resources :authors
   resources :categories
   resources :entries
   # The priority is based upon order of creation: first created -> highest priority.

@@ -17,14 +17,12 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new(category_params)
+    @category = Category.new(params.require(:category).permit(:name))
 
-    respond_to do |format|
-      if @category.save
-        format.html { redirect_to @category, notice: 'Category was successfully created.' }
-      else
-        format.html { render :new }
-      end
+    if @category.save
+      redirect_to @category, notice: 'Category was successfully created.'
+    else
+      render :new
     end
   end
 
@@ -43,7 +41,7 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @category.destroy
     respond_to do |format|
-      format.html { redirect_to categories_url }
+      format.html { redirect_to categories_url  }
     end
   end
 

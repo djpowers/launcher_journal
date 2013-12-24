@@ -4,7 +4,9 @@ class CreateEntries < ActiveRecord::Migration
       t.string :title, null: false
       t.text :description, null: false
       t.integer :author_id, null: false
-      t.integer :category_id, null: false
+      t.integer :category_id
+
+      t.timestamps
     end
   end
 end
