@@ -17,7 +17,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new(params.require(:category).permit(:name))
+    @category = Category.new(category_params)
 
     if @category.save
       redirect_to @category, notice: 'Category was successfully created.'
@@ -28,21 +28,23 @@ class CategoriesController < ApplicationController
 
   def update
     @category = Category.find(params[:id])
-    respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to @category, notice: 'Category was successfully updated.' }
+        redirect_to @category, notice: 'Category was successfully updated.'
       else
-        format.html { render action: 'edit' }
+        render action: 'edit'
       end
-    end
   end
 
   def destroy
     @category = Category.find(params[:id])
     @category.destroy
-    respond_to do |format|
-      format.html { redirect_to categories_url  }
-    end
+    redirect_to categories_url
   end
+
+  private
+
+    def category_params
+      params.require(:category).permit(:name)
+    end
 
 end

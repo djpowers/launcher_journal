@@ -4,4 +4,12 @@ class Author < ActiveRecord::Base
 
   has_many :entries
 
+  def self.authors_info
+    output = []
+    self.all.each do |author|
+      output << [author.name, author.id]
+    end
+    output
+  end
+
 end

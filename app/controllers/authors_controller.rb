@@ -19,33 +19,27 @@ class AuthorsController < ApplicationController
   def create
     @author = Author.new(author_params)
 
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @author, notice: 'Author was successfully created. Happy writing!' }
+      if @author.save
+        redirect_to @author, notice: 'Author was successfully created. Happy writing!'
       else
         puts 'There was an error!'
-        format.html { render :new }
+        render :new
       end
-    end
   end
 
   def update
     @author = Author.find(params[:id])
-    respond_to do |format|
       if @author.update(author_params)
-        format.html { redirect_to @author, notice: 'Author was successfully updated. Happy writing!' }
+        redirect_to @author, notice: 'Author was successfully updated. Happy writing!'
       else
-        format.html { render action: 'edit' }
+        render action: 'edit'
       end
-    end
   end
 
   def destroy
     @author = Author.find(params[:id])
     @author.destroy
-    respond_to do |format|
-      format.html { redirect_to authors_url }
-    end
+    redirect_to authors_url
   end
 
   private

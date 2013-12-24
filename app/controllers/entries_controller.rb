@@ -19,38 +19,38 @@ class EntriesController < ApplicationController
   def create
     @entry = Entry.new(entry_params)
 
-    respond_to do |format|
       if @entry.save
-        format.html { redirect_to @entry, notice: 'Entry was successfully created.' }
+        redirect_to @entry, notice: 'Entry was successfully created.'
       else
-        format.html { render :new }
+        render :new
       end
-    end
   end
 
   def update
     @entry = Entry.find(params[:id])
-    respond_to do |format|
       if @entry.update(event_params)
-        format.html { redirect_to @entry, notice: 'Entry was successfully updated.' }
+        redirect_to @entry, notice: 'Entry was successfully updated.'
       else
-        format.html { render action: 'edit' }
+        render action: 'edit'
       end
-    end
   end
 
   def destroy
     @entry = Entry.find(params[:id])
     @entry.destroy
     respond_to do |format|
-      format.html { redirect_to entries_url }
+    redirect_to entries_url
     end
   end
 
   private
 
     def entry_params
-      params.require(:event).permit(:title, :description)
+      params.require(:entry).permit(:title, :description)
+    end
+
+    def author_options
+      @author_options ||= Author.authors_info
     end
 
 end
