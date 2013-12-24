@@ -46,11 +46,7 @@ class EntriesController < ApplicationController
   private
 
     def entry_params
-      params.require(:entry).permit(:title, :description)
-    end
-
-    def author_options
-      @author_options ||= Author.authors_info
+      params.require(:entry).permit(:title, :description, :author_id, :category_id)
     end
 
 end

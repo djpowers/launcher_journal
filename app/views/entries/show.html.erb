@@ -1,0 +1,12 @@
+<p>
+  <strong>Entry:</strong>
+  <%= @entry.title %><br>
+  <strong>Author:</strong>
+  <%= Author.where(id: @entry.author_id).first.name %><br>
+  <strong>Category:</strong>
+  <%= Category.where(id: @entry.category_id).first.name %><br>
+  <%= @entry.description %><br>
+</p>
+
+<%= link_to 'Edit', edit_entry_path(@entry) %>
+<%= link_to 'Back', entries_path %>
