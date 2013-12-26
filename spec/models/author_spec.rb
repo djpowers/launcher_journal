@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe Author do
 
+  before(:each) do
+    FactoryGirl.create(:author)
+  end
+
   it { should have_valid(:name).when("Dave Powers", "James") }
   it { should_not have_valid(:name).when(nil, "") }
 
